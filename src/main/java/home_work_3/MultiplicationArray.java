@@ -17,8 +17,9 @@ public class MultiplicationArray {
             if (arr[i] < 6) {//Проверяем значения
                 arr[i] = arr[i] * 2;//Если меньше 6 - умножаем на 2
             }
-            System.out.print(arr[i] + " ");//выводим результат в консоль
+            //System.out.print(arr[i] + " ");//выводим результат в консоль
         }
+        System.out.println(Arrays.toString(arr)); //распечатка результата в строку
 
 
     }

@@ -18,6 +18,6 @@ public class ChangeArray {
                 arr[i] = 1;
             }
         }
-        System.out.println(Arrays.toString(arr)); //ввыводим массив в изменённом виде
+        System.out.println(Arrays.toString(arr)); //ввыводим изменённый массив
     }
 }
