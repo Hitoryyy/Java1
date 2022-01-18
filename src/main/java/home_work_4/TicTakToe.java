@@ -71,14 +71,16 @@ public class TicTakToe {
 
     }
 
-    //Ход робота
+    /**
+     * Ход робота
+     */
     public static void aiTurn() {
         int x, y;
         do {
             x = RANDOM.nextInt(SIZE);
             y = RANDOM.nextInt(SIZE);
         } while (!isCellValid(x, y));
-        System.out.println("Робот ходит в "+ (x + 1) + " " + (y + 1));
+        System.out.println("Робот ходит в " + (x + 1) + " " + (y + 1));
         map[y][x] = DOX_0;
     }
 
@@ -102,14 +104,129 @@ public class TicTakToe {
 
     }
 
+    /**
+     * Проверка победы простыми условиями
+     *
+     * @param symbol Символ для которого принимаем. Крестик или нолик
+     * @return true, если выиграл
+     */
+
+   /* public static boolean checkWin(char symbol) {
+        //проверка строк
+        if (map[0][0] == symbol && map[0][1] == symbol && map[0][2] == symbol) {
+            return true;
+        }
+        if (map[1][0] == symbol && map[1][1] == symbol && map[1][2] == symbol) {
+            return true;
+        }
+        if (map[2][0] == symbol && map[2][1] == symbol && map[2][2] == symbol) {
+            return true;
+        }
+
+        //проверка столбцов
+        if (map[0][0] == symbol && map[1][0] == symbol && map[2][0] == symbol) {
+            return true;
+        }
+        if (map[0][1] == symbol && map[1][1] == symbol && map[2][1] == symbol) {
+            return true;
+        }
+        if (map[0][2] == symbol && map[1][2] == symbol && map[2][2] == symbol) {
+            return true;
+        }
+
+        //проверка диагоналей
+        if (map[0][0] == symbol && map[1][1] == symbol && map[2][2] == symbol) {
+            return true;
+        }
+        if (map[2][0] == symbol && map[1][1] == symbol && map[0][2] == symbol) {
+            return true;
+        }
+        return false;
+    }*/
+//-----------------------------------------------------------------------------------------//
+    //Проверка (через логику)
+
+    //строки и столбцы
+    public static boolean checkWinSC(char symbol) {
+        boolean stri, colj; // добавляем переменные логического типа
+        for (int i = 0; i < map.length; i++) { //запускаем цикл, пробегаемся по всем элементам массива
+            stri = true;// присваиваем значения истины (1)
+            colj = true;// присваиваем значения истины (1)
+            for (int j = 0; j < map.length; j++) {
+                stri = stri & (map[j][i] == symbol); //в теле цикла присваиваем значения исходя из двоичной логики
+                colj = colj & (map[i][j] == symbol); // 1&1 = 1 , 1&0 = 0
+            }
+            if (stri || colj) { //если какое либо из значений истинно возврщаем истину (true)
+                return true;
+            }
+        }
+        return false;//либо ложь (false), но в этом случае из метода ничего не вернётся и похоже победит робот ))
+    }
+
+    //диагонали
+    public static boolean checkWinD(char symbol) {
+        boolean rd = true;
+        boolean ld = true;
+        for (int i = 0; i < map.length; i++) {
+            rd = rd & (map[i][i] == symbol);
+            ld = ld & (map[3 - i - 1][i] == symbol);
+        }
+        if (rd || ld) {
+            return true;
+        }
+        return false;
+    }
+
+//----------------------------------------------------------------------------------------//
+
+    /**
+     * Проверка если в поле все ячейки заполнены ( * )
+     *
+     * @return true, если нет свободных ( * )
+     */
+    public static boolean isMapFull() {
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                if (map[i][j] == DOT_EMPTY) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         initMap();
         printMap();
-        humanTurn();
-        aiTurn();
-        printMap();
-        humanTurn();
-        printMap();
+        while (true) {
+            humanTurn();
+            printMap();
+            if (checkWinSC(DOT_X)) {
+                System.out.println("Побеждает человек");
+                break;
+            }
+            if (checkWinD(DOT_X)){
+                System.out.println("Побеждает человек");
+                break;
+            }
+            if (isMapFull()) {
+                System.out.println("Ничья");
+            }
+            aiTurn();
+            printMap();
+            if (checkWinSC(DOX_0)) {
+                System.out.println("Побеждает робот");
+                break;
+            }
+            if (checkWinD(DOX_0)){
+                System.out.println("Побеждает робот");
+                break;
+            }
+            if (isMapFull()) {
+                System.out.println("Ничья");
+            }
+        }
+        System.out.println("Game over");
     }
 }
 
