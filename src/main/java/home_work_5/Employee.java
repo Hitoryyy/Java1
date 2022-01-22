@@ -73,7 +73,7 @@ public class Employee {
         System.out.println("ФИО: " + full_name + "\n" + " Должность: " + position + "\n" + " E-mail: " + mail +
                 "\n" + " Телефон: " + telephone + "\n" + " Зарплата: " + salary + "\n" + " Возраст: " + age);
     }
-
+    //печатаем поле объекта
     public int printAge() {
         return age;
     }
