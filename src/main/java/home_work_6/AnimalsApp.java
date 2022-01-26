@@ -1,6 +1,6 @@
 package home_work_6;
 
-
+//.
 public class AnimalsApp {
     public static void main(String[] args) {
         Animal animal = new Animal("Кошки");

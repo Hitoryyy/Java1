@@ -1,6 +1,6 @@
 package home_work_6;
 
-//наследный класс животных - собаки
+//наследный класс животных - собаки.
 class Dog extends Animal {
 
     public int sweem;

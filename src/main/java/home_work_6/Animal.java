@@ -1,5 +1,5 @@
 package home_work_6;
-
+//.
 class Animal {
     public String name;
     public int run;

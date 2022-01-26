@@ -1,6 +1,6 @@
 package home_work_6;
 
-//наследный класс животных - коты
+//наследный класс животных - коты.
 class Cat extends Animal {
     protected boolean sweem;
 
