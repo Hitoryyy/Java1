@@ -7,7 +7,7 @@ public class TwoDimArray {
         int[][] array = new int[5][5];
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                System.out.println(array[i][j] + " ");
+                System.out.print(array[i][j] + " ");
             }
             System.out.println();
         }
@@ -19,6 +19,6 @@ public class TwoDimArray {
 
         newArray[0] = new int []{1,2,3};
 
-        System.out.println(Arrays.toString(newArray));
+        System.out.print(Arrays.toString(newArray));
     }
 }
